@@ -1,0 +1,8 @@
+# database config
+/.env
+
+# dependencies
+/node_modules
+
+# intelliJ
+.idea
