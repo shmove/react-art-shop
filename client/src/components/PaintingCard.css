@@ -1,0 +1,37 @@
+.painting-card {
+    @apply flex flex-col mb-4 w-auto;
+    @apply bg-cara-whiter shadow-md rounded-xl overflow-hidden;
+    @apply transition ease-in-out hover:cursor-pointer hover:scale-[1.02] hover:shadow-lg duration-200;
+}
+
+.painting-card img {
+
+}
+
+.painting-card-content {
+    @apply flex flex-col p-2 w-full;
+}
+
+.painting-card-row {
+    @apply flex flex-row justify-between items-center gap-2 mx-2;
+}
+
+.painting-card-row-important {
+    @apply flex flex-col w-full;
+}
+
+.painting-card-content p {
+    @apply text-right text-cara-violet;
+}
+
+.painting-card-content h2 {
+    @apply text-cara-magenta font-bold text-2xl;
+}
+
+.painting-card-content h3 {
+    @apply text-cara-violet text-xs;
+}
+
+.painting-card-content h4 {
+    @apply text-cara-black text-sm;
+}
