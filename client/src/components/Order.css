@@ -1,0 +1,7 @@
+.success-message {
+    @apply text-center font-bold text-cara-success text-xl;
+}
+
+.failure-message {
+    @apply text-center font-bold text-cara-failure text-xl;
+}
