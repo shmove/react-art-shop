@@ -15,7 +15,10 @@ const PORT = 8081;
 
 // Art
 
+function timestamp() { return "[" + new Date().toLocaleTimeString() + "]"; }
+
 app.get('/api/art', (req, res) => {
+    console.log(timestamp() + " GET /api/art... " + (req.query.id ? `id=${req.query.id}` : "No id specified"));
 
     let query = [
         "SELECT t1.ArtID, Name, CompletionDate, Width, Height, Price, Description, CASE WHEN t2.ArtID IS NOT NULL THEN TRUE ELSE FALSE END AS Purchased",
@@ -41,8 +44,10 @@ app.get('/api/art', (req, res) => {
 // Orders
 
 app.post('/api/order', (req, res) => {
+    console.log(timestamp() + " POST /api/order...");
+    console.log(JSON.stringify(req.body));
     connection.query("INSERT INTO `cs312-Order` (ArtID, CustomerName, CustomerNumber, CustomerEmail, CustomerAddress) VALUES (?, ?, ?, ?, ?);", [req.body.ArtID, req.body.CustomerName, req.body.CustomerNumber, req.body.CustomerEmail, req.body.CustomerAddress], (err, data) => {
-        if (err) res.json({ error: err })
+        if (err) { console.log(err); res.json({ error: err }); }
         else res.json({ data })
     });
 });
