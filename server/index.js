@@ -17,22 +17,42 @@ const PORT = 8081;
 
 function timestamp() { return "[" + new Date().toLocaleTimeString() + "]"; }
 
+app.get('/api/art/images', (req, res) => {
+   console.log(timestamp() + " GET /api/art/images... " + (req.query.id ? `id=${req.query.id}` : "No id specified"));
+
+   if (!req.query.id) {
+       res.json({ error: "No id specified" });
+       return;
+   }
+
+    connection.query("SELECT Image FROM `cs312-Art` WHERE ArtID = ?;", [req.query.id], (err, data) => {
+         if (err) res.json({ error: err })
+         else res.json({ data })
+    });
+});
+
 app.get('/api/art', (req, res) => {
-    console.log(timestamp() + " GET /api/art... " + (req.query.id ? `id=${req.query.id}` : "No id specified"));
+    console.log(timestamp() + " GET /api/art... " + ((req.query.id) ? `id=${req.query.id}` : (req.query.page) ? `page=${req.query.page}` : "No id or page specified"));
 
     let query = [
         "SELECT t1.ArtID, Name, CompletionDate, Width, Height, Price, Description, CASE WHEN t2.ArtID IS NOT NULL THEN TRUE ELSE FALSE END AS Purchased",
         "FROM `cs312-Art` t1",
         "LEFT JOIN `cs312-Order` t2 ON t2.ArtID = t1.ArtID",
-        "ORDER BY CompletionDate ASC;"
+        "ORDER BY t1.ArtID DESC",
+        "LIMIT 12;"
     ]
 
+    let page = 1;
     let params = [];
 
     if (req.query.id) {
         query.splice(3, 0, "WHERE t1.ArtID = ?"); // Insert WHERE clause
         params.push(req.query.id);
+    } else if (req.query.page) {
+        if (req.query.page > 0) page = req.query.page;
     }
+
+    if (page > 1) query[4] = `LIMIT ${(page - 1) * 12}, 12;`; // Set offset
 
     connection.query(query.join(' '), params, (err, data) => {
         if (err) res.json({ error: err })
@@ -55,7 +75,11 @@ app.post('/api/order', (req, res) => {
 // Root
 
 app.get('/api', (req, res) => {
-    res.redirect('/api/art');
+    console.log(timestamp() + " GET /api...");
+    connection.query("SELECT COUNT(*) AS NumberOfArtworks FROM `cs312-Art`;", (err, data) => {
+        if (err) res.json({ error: err })
+        else res.json({ data:data[0] })
+    });
 });
 
 app.listen(PORT, () => {

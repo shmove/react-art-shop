@@ -4,16 +4,12 @@
     @apply transition ease-in-out hover:cursor-pointer hover:scale-[1.02] hover:shadow-lg duration-200;
 }
 
-.painting-card img {
-
-}
-
 .painting-card-content {
     @apply flex flex-col p-2 w-full;
 }
 
 .painting-card-row {
-    @apply flex flex-row justify-between items-center gap-2 mx-2;
+    @apply flex flex-row justify-between items-center gap-2 mx-2 py-2;
 }
 
 .painting-card-row-important {

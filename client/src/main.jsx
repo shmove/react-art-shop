@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 
-import PaintingListings, {fetchPaintings} from "./pages/PaintingListings.jsx";
+import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
 import Root from "./Root.jsx";
 
@@ -17,13 +17,11 @@ const BrowserRouter = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <PaintingListings />,
-                loader: fetchPaintings
+                element: <PaintingListings />
             },
             {
                 path: '/artwork/:id',
-                element: <Artwork />,
-                loader: fetchPaintings
+                element: <Artwork />
             }
         ]
     },

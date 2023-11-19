@@ -54,7 +54,7 @@ export const OrderForm = ({ ArtID }) => {
 
         const resJSON = await res.json();
         setResJSON(resJSON);
-        console.log(resJSON === {});
+        console.log(JSON.stringify(resJSON) === "{}");
     }
 
     if (resJSON !== null) {

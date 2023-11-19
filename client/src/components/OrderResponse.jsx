@@ -11,7 +11,7 @@ function errorText(errno) {
 
 export const OrderResponse = ({ apiJSONRes }) => {
 
-    if (apiJSONRes === {}) return;
+    if (JSON.stringify(apiJSONRes) === "{}") return;
 
     if (apiJSONRes.error) {
         return (

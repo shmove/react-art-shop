@@ -11,6 +11,7 @@ CREATE TABLE `cs312-Art` (
     Height INT,
     Price DECIMAL(6,2) NOT NULL,
     Description VARCHAR(1024),
+    Image MEDIUMBLOB,
     CONSTRAINT Art_PK PRIMARY KEY (ArtID)
 );
 
@@ -24,58 +25,88 @@ CREATE TABLE `cs312-Order` (
     CONSTRAINT Order_Art_FK FOREIGN KEY (ArtID) REFERENCES `cs312-Art` (ArtID)
 );
 
--- Insert data
+-- Insert data (no images included!)
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Serene Landscape', '2023-12-15', 360, 240, 250.00, 'A tranquil landscape painting depicting a peaceful countryside scene with rolling hills and a serene lake.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('A North East Headland', '2023-11-13', 750, 626, 255, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('City Lights', '2024-01-23', 240, 180, 150.00, 'An evocative cityscape capturing the vibrant night lights of a bustling metropolis.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('An English Cod', '2023-11-13', 750, 675, 270, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Eternal Gaze', '2024-02-20', 300, 400, 300.00, 'A captivating portrait of a thoughtful gaze.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Château Noir', '2023-11-13', 750, 573, 155, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Abstract Dreams', '2024-01-10', 480, 360, 350.00, 'A bold and vibrant abstract painting that invites viewers to interpret its unique patterns and colors.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Madison Square, Snow', '2023-11-14', 750, 623, 205, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Fruit Basket', '2024-04-01', 160, 200, 75.00, 'A delightful still life painting featuring a colorful assortment of fruits.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('May Night', '2023-11-16', 690, 750, 335, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Coastal Serenity', '2024-03-02', 300, 240, 200.00, 'A calming seascape with waves gently caressing the shore.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Moonlight', '2023-11-17', 750, 556, 225, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Rustic Barn', '2024-05-15', 220, 180, 175.00, 'A simple yet charming painting of an old, weathered barn in the countryside.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Obweebetuck', '2023-11-13', 750, 538, 115, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Urban Alleyway', '2024-06-10', 320, 240, 220.00, 'A gritty depiction of an urban alleyway with graffiti-covered walls and hints of street life.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Old Factory', '2023-11-14', 750, 527, 385, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Sunset Over Mountains', '2024-07-18', 400, 280, 275.00, 'A serene moment as the sun sets behind majestic mountains, casting a warm and peaceful glow.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Oyster Sloop, Cos Cob', '2023-11-14', 690, 750, 55, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Abstract Fusion', '2024-06-05', 500, 400, 400.00, 'An abstract composition that explores the fusion of colors and shapes, leaving room for interpretation.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Palazzo da Mula, Venice', '2023-11-15', 750, 569, 225, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Still Waters', '2024-08-12', 300, 220, 180.00, 'A tranquil lake scene with perfectly still waters reflecting the surrounding natural beauty.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Peaches on a Plate', '2023-11-14', 750, 463, 200, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Gentle Breeze', '2024-09-03', 260, 200, 150.00, 'A soft breeze rustling through a field of wildflowers, capturing a moment of nature\'s tranquility.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Place du Carrousel, Paris', '2023-11-18', 750, 622, 350, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Industrial Landscape', '2024-10-22', 360, 260, 280.00, 'A depiction of an industrial landscape with factories and machinery working harmoniously.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Snow in New York', '2023-11-15', 601, 750, 115, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Morning Mist', '2024-11-15', 320, 240, 210.00, 'A serene early morning scene with mist rising over a tranquil countryside.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Still Life with Apples and Peaches', '2023-11-13', 750, 601, 250, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Abstract Exploration', '2024-10-03', 480, 360, 350.00, 'An abstract painting that invites viewers to explore its intricate patterns and textures.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Still Life with Bottles and Fruit', '2023-11-18', 750, 749, 390, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Simplicity in Nature', '2024-12-05', 280, 220, 190.00, 'A simple yet beautiful portrayal of the natural world, emphasizing its understated elegance.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Still Life with Milk Jug and Fruit', '2023-11-17', 750, 629, 310, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Rural Charm', '2024-11-28', 400, 300, 230.00, 'A heartwarming representation of rural life, capturing the charm of a small, idyllic village.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Artist\'s Studio', '2023-11-14', 750, 614, 110, 'TEMP', NULL);
 
-INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description)
-VALUES ('Sunrise Horizon', '2024-12-31', 360, 240, 260.00, 'A vibrant sunrise on the horizon, painting the sky with hues of orange and pink as a new day begins.');
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Bend in the Road', '2023-11-17', 604, 750, 305, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Houses of Parliament', '2023-11-13', 750, 662, 335, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Louvre, Afternoon, Rainy Weather', '2023-11-14', 750, 602, 320, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Petition', '2023-11-13', 750, 602, 130, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('The Seine', '2023-11-13', 750, 534, 185, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Vase of Flowers on a Mantelpiece', '2023-11-17', 611, 750, 260, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Vase of Flowers', '2023-11-18', 606, 750, 160, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Waterloo Bridge, Gray Day', '2023-11-17', 750, 484, 385, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Waterloo Bridge, London, at Dusk', '2023-11-17', 750, 482, 315, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Waterloo Bridge, London, at Sunset', '2023-11-15', 750, 528, 300, 'TEMP', NULL);
+
+INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
+VALUES ('Wild Olive Tree Roots, Valldemosa, Majorca', '2023-11-13', 750, 590, 95, 'TEMP', NULL);

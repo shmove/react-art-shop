@@ -1,18 +1,26 @@
-import {useLoaderData} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import OrderForm from "../components/OrderForm.jsx";
 
 import '../components/Order.css';
-
-import {randomTempImage} from "../components/PaintingCard.jsx";
+import ImageComponent from "../components/ImageComponent.jsx";
+import {fetchPainting} from "./PaintingListings.jsx";
+import {useEffect, useState} from "react";
 
 function Artwork() {
 
-    const { data } = useLoaderData();
-    const painting = data[0];
+    const id = useParams().id;
+
+    const [painting, setPainting] = useState({});
+
+    useEffect(() => {
+        fetchPainting(id).then((res) => {
+            setPainting(res.data[0]);
+        });
+    }, [id]);
 
     return (
         <div className="flex flex-row gap-4 mx-24 justify-center items-center align-middle">
-            <img className="" src={randomTempImage()}/>
+            <ImageComponent artID={painting["ArtID"]} />
             <div className="flex flex-col gap-3">
                 <div>
                     <h1 className="text-5xl text-center text-cara-magenta font-light">{painting["Name"]}</h1>
