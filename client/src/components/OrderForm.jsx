@@ -44,7 +44,7 @@ export const OrderForm = ({ ArtID }) => {
         let valid = await validateForm(formData);
         if (!valid) return;
 
-        const res = await fetch("/api/order", {
+        const res = await fetch("/api/orders", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 import './index.css'
 
+import Root from "./Root.jsx";
 import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
-import Root from "./Root.jsx";
+import Admin from "./pages/Admin.jsx";
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/artwork/:id',
                 element: <Artwork />
+            },
+            {
+                path: '/admin',
+                element: <Admin />
             }
         ]
     },

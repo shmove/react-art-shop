@@ -12,7 +12,7 @@ function PageSelector({ currentPage, totalPages, setPage }) {
             <button
                 onClick={() => setPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta hover:cursor-pointer font-bold rounded-xl p-2 w-24">
+                className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2 w-24">
                 Next
             </button>
         </div>
