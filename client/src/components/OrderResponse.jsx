@@ -1,5 +1,3 @@
-import './Order.css';
-
 function errorText(errno) {
     switch(errno) {
         case 1062:
@@ -15,11 +13,11 @@ export const OrderResponse = ({ apiJSONRes }) => {
 
     if (apiJSONRes.error) {
         return (
-            <p className="failure-message">{errorText(apiJSONRes.error.errno)}</p>
+            <p className="failure">{errorText(apiJSONRes.error.errno)}</p>
         )
     } else {
         return (
-            <p className="success-message">Order successful!</p>
+            <p className="success">Order successful!</p>
         )
     }
 

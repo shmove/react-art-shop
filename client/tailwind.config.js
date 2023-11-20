@@ -10,7 +10,7 @@ export default {
         'cara-white': '#F4ECD6',
         'cara-whiter': '#f8f3e7',
         'cara-black': '#231B1B',
-        'cara-grey': '#9FA0C3',
+        'cara-grey': '#aaaabc',
         'cara-violet': '#8B687F',
         'cara-magenta': '#7B435B',
         'cara-failure': '#BA1200',

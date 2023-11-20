@@ -1,33 +1,33 @@
-.painting-card {
+.card {
     @apply flex flex-col mb-4 w-auto;
     @apply bg-cara-whiter shadow-md rounded-xl overflow-hidden;
     @apply transition ease-in-out hover:cursor-pointer hover:scale-[1.02] hover:shadow-lg duration-200;
 }
 
-.painting-card-content {
+.card-content {
     @apply flex flex-col p-2 w-full;
 }
 
-.painting-card-row {
+.card-row {
     @apply flex flex-row justify-between items-center gap-2 mx-2 py-2;
 }
 
-.painting-card-row-important {
+.card-row-important {
     @apply flex flex-col w-full;
 }
 
-.painting-card-content p {
+.card-content p {
     @apply text-right text-cara-violet;
 }
 
-.painting-card-content h2 {
+.card-content h2 {
     @apply text-cara-magenta font-bold text-2xl;
 }
 
-.painting-card-content h3 {
+.card-content h3 {
     @apply text-cara-violet text-xs;
 }
 
-.painting-card-content h4 {
+.card-content h4 {
     @apply text-cara-black text-sm;
 }

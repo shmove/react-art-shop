@@ -39,7 +39,7 @@ function Admin() {
 
         return (
             <div className="flex flex-col items-center gap-4">
-                <h2 className="text-2xl font-bold text-cara-magenta">Orders</h2>
+                <h2>Orders</h2>
                 <table className="table-auto">
                     <thead>
                         <tr>
@@ -81,9 +81,9 @@ function Admin() {
     } else {
         return (
             <div className="flex flex-col items-center justify-center">
-                <p className="text-cara-violet font-bold">Please enter the admin password to access this section.</p>
+                <p className="font-bold">Please enter the admin password to access this section.</p>
                 <input placeholder="Password" type="password" className="h-8 my-2" onChange={(e) => setPassword(e.target.value)}/>
-                <p className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2" onClick={submitLogin}>Submit</p>
+                <button onClick={submitLogin}>Submit</button>
                 {
                     loggedIn !== null
                     ? <p className="text-cara-failure font-bold">Incorrect password.</p>

@@ -1,18 +1,21 @@
 function PageSelector({ currentPage, totalPages, setPage }) {
 
+    function backSelectable() { return currentPage !== 1; }
+    function nextSelectable() { return currentPage !== totalPages; }
+
     return (
         <div className="flex justify-center items-center my-4">
             <button
                 onClick={() => setPage(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2 w-24">
+                disabled={!backSelectable()}
+                className={"w-24" + (backSelectable() ? "" : " unselectable")}>
                 Previous
             </button>
             <span className="text-cara-magenta font-bold text-xl mx-4">{currentPage} of {totalPages}</span>
             <button
                 onClick={() => setPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2 w-24">
+                disabled={!nextSelectable()}
+                className={"w-24" + (nextSelectable() ? "" : " unselectable")}>
                 Next
             </button>
         </div>

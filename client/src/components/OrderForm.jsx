@@ -64,12 +64,12 @@ export const OrderForm = ({ ArtID }) => {
             <>
                 <form className="flex flex-col gap-4 self-center items-center">
                     <p><input name="ArtID" type="hidden" value={ArtID} /></p>
-                    <OrderInput name="CustomerName" type="text" placeholder="Name" onChange={(e) => setCustomerName(e.target.value)} />
-                    <OrderInput name="CustomerNumber" type="tel" placeholder="Phone Number" onChange={(e) => setCustomerNumber(e.target.value)} />
-                    <OrderInput name="CustomerEmail" type="email" placeholder="Email" onChange={(e) => setCustomerEmail(e.target.value)} />
+                    <OrderInput name="CustomerName" type="text" placeholder="Name"                onChange={(e) => setCustomerName(e.target.value)} />
+                    <OrderInput name="CustomerNumber" type="tel" placeholder="Phone Number"       onChange={(e) => setCustomerNumber(e.target.value)} />
+                    <OrderInput name="CustomerEmail" type="email" placeholder="Email"             onChange={(e) => setCustomerEmail(e.target.value)} />
                     <OrderInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} />
                     { formError !== "" ? <p className="my-2 text-center font-bold text-cara-failure">{formError}</p> : "" }
-                    <p><button type="button" onClick={attemptOrder} className="bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta hover:cursor-pointer font-bold rounded-xl p-2 w-64">Order</button></p>
+                    <p><button onClick={attemptOrder} className="w-64">Order</button></p>
                 </form>
             </>
         )

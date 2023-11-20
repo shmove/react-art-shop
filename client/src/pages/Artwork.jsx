@@ -22,16 +22,16 @@ function Artwork() {
         <div className="flex flex-row gap-4 mx-24 justify-center items-center align-middle">
             <ImageComponent artID={painting["ArtID"]} />
             <div className="flex flex-col gap-3">
-                <div>
-                    <h1 className="text-5xl text-center text-cara-magenta font-light">{painting["Name"]}</h1>
-                    <h2 className="text-2xl text-center text-cara-violet font-light">({painting["Width"]} x {painting["Height"]} mm)</h2>
-                    <h3 className="text-2xl text-center text-cara-magenta font-bold">£{painting["Price"]}</h3>
-                    <p className="text-center text-cara-violet font-light">"{painting["Description"]}"</p>
-                    <p className="text-center text-cara-violet font-light">Estimated completion date: {new Date(painting["CompletionDate"]).toDateString()}</p>
+                <div className="text-center">
+                    <h1>{painting["Name"]}</h1>
+                    <h3>({painting["Width"]} x {painting["Height"]} mm)</h3>
+                    <h2>£{painting["Price"]}</h2>
+                    <p>"{painting["Description"]}"</p>
+                    <p>Estimated completion date: {new Date(painting["CompletionDate"]).toDateString()}</p>
                 </div>
                 {
                     painting["Purchased"] === 1
-                        ? <p className="failure-message">Sold</p>
+                        ? <p className="failure">Sold</p>
                         : <OrderForm ArtID={painting["ArtID"]} />
                 }
             </div>
