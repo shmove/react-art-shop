@@ -4,7 +4,7 @@ function PageSelector({ currentPage, totalPages, setPage }) {
     function nextSelectable() { return currentPage !== totalPages; }
 
     return (
-        <div className="flex justify-center items-center my-4">
+        <div className="flex justify-center items-center mb-4">
             <button
                 onClick={() => setPage(currentPage - 1)}
                 disabled={!backSelectable()}

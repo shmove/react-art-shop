@@ -1,18 +1,29 @@
 import './PaintingCard.css'
 import {Link} from "react-router-dom";
-import ImageComponent from "./ImageComponent.jsx";
+import {useEffect, useState} from "react";
+import {getImage} from "../pages/PaintingListings.jsx";
+import { Spinner } from 'flowbite-react';
 
 function PaintingCard(painting) {
+
+    const [imageSrc, setImageSrc] = useState("");
+    useEffect(() => { getImage(painting["ArtID"], setImageSrc); }, [painting["ArtID"]]);
+
     if (painting["Purchased"]) return null;
-    return (
+    else return (
         <Link to = {"/artwork/" + painting["ArtID"]}>
             <div className="card">
-                <ImageComponent artID={painting["ArtID"]} />
+                {
+                    (imageSrc !== "")
+                        ? <img src={imageSrc} alt={painting["Description"]} />
+                        : <div className="h-72 flex flex-col justify-center items-center">
+                            <Spinner className="h-16 w-16 text-cara-white fill-cara-violet"/>
+                        </div>
+                }
                 <div className="card-content">
                     <div className="card-row">
                         <div className="card-row-important">
                             <h2>{painting["Name"]}</h2>
-                            {/*<h3>({painting["Width"]} x {painting["Height"]} mm)</h3>*/}
                         </div>
                         <p>£{painting["Price"]}</p>
                     </div>
@@ -20,6 +31,7 @@ function PaintingCard(painting) {
             </div>
         </Link>
     )
+
 }
 
 export default PaintingCard;

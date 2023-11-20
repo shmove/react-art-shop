@@ -1,6 +1,7 @@
 import PaintingCard from "../components/PaintingCard.jsx";
 import {useEffect, useState} from "react";
 import PageSelector from "../components/PageSelector.jsx";
+import {Buffer} from "buffer";
 
 export async function fetchPaintingCount() {
     const res = await fetch("/api/");
@@ -24,6 +25,16 @@ export async function fetchPainting(id) {
     return { data };
 }
 
+export async function getImage(artID, setFunc) {
+    setFunc("");
+    const res = await fetch("/api/art/images?id=" + artID);
+    const json = await res.json();
+    if (json.data[0].Image === null) return;
+    const data = json.data[0].Image.data;
+    const image = "data:image/png;base64," + Buffer.from(data).toString('base64');
+    setFunc(image);
+}
+
 function PaintingListings() {
 
     const [page, setPage] = useState(1);
@@ -44,7 +55,7 @@ function PaintingListings() {
         <>
             <PageSelector currentPage={page} totalPages={paintingCount} setPage={setPage} />
             <div className="columns-3 mx-72 gap-8">
-                { paintings.map((painting) => PaintingCard(painting)) }
+                { paintings.map((painting) => { return <PaintingCard {...painting} />; }) }
             </div>
         </>
 
