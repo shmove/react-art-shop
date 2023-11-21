@@ -1,36 +1,18 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import OrderTable from "../components/OrderTable.jsx";
 import ArtworkCreator from "../components/ArtworkCreator.jsx";
 
 const PASSWORD = "WeKnowTheGame23";
-
-async function getOrders() {
-    const res = await fetch("/api/orders", {
-        method: "GET",
-        headers: {
-            "Authorization": "Basic " + btoa(PASSWORD),
-        }
-    });
-
-    const json = await res.json();
-    const data = json.data;
-    return { data };
-}
-
-async function removeOrder(artID) {
-    // TODO
-}
 
 function Admin() {
 
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(null);
-    const [orders, setOrders] = useState([]);
 
     function submitLogin() {
         if (password === PASSWORD) {
             setLoggedIn(true);
-            getOrders().then((res) => { setOrders(res.data); });
+
         } else {
             setLoggedIn(false);
         }
@@ -39,43 +21,12 @@ function Admin() {
     if (loggedIn) {
 
         return (
-            <div className="flex flex-col items-center gap-4">
-                <h2>Orders</h2>
-                <table className="table-auto">
-                    <thead>
-                        <tr>
-                            <th>ArtID</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        orders.map((order) => {
-                            return (
-                                <tr>
-                                    <td><Link to={"/artwork/" + order["ArtID"]}>{order["ArtID"]}</Link></td>
-                                    <td>{order["CustomerName"]}</td>
-                                    <td>{order["CustomerNumber"]}</td>
-                                    <td>{order["CustomerEmail"]}</td>
-                                    <td>{order["CustomerAddress"]}</td>
-                                    <td><button
-                                        className="mx-4 bg-cara-failure text-cara-whiter font-bold px-2 rounded-xl"
-                                        >
-                                        Remove (TODO)
-                                    </button></td>
-                                </tr>
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>
-
-                <h2 className="text-2xl font-bold text-cara-magenta">Create Artwork</h2>
+            <div className="flex grow flex-col items-center gap-4">
+                <h2>Create Artwork</h2>
                 <ArtworkCreator apiPass={password} />
+                <hr className="w-1/2 my-6" />
+                <h2>Orders</h2>
+                <OrderTable apiPass={password} />
             </div>
         )
 

@@ -20,7 +20,7 @@ function Root() {
                 </div>
             </div>
 
-            <hr/>
+            <hr className="mb-6"/>
 
             <Outlet />
 

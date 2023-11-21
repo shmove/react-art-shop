@@ -15,7 +15,9 @@ export default {
         'cara-violet': '#8B687F',
         'cara-magenta': '#7B435B',
         'cara-failure': '#BA1200',
-        'cara-success': '#5DA271'
+        'cara-failure-dark': '#940e00',
+        'cara-success': '#5DA271',
+        'cara-success-dark': '#4a815a'
       }
     },
   },

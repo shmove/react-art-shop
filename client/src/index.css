@@ -11,7 +11,7 @@
 /* Element Styling */
 
 hr {
-    @apply h-[0.2rem] bg-cara-magenta w-auto mx-4 mb-6;
+    @apply h-[0.2rem] bg-cara-magenta w-auto mx-4;
 }
 
 svg {

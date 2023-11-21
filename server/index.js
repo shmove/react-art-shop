@@ -8,10 +8,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors());
 
 const { connection } = require('./database');
+const {auth} = require("mysql/lib/protocol/Auth");
 
 const PASSWORD = "WeKnowTheGame23";
 const PORT = 8081;
 
+// Require password
+// https://benborgers.com/posts/express-password-protect
 function authenticate(req, res, next) {
     const reject = () => {
         console.log(timestamp() + " Request failed authentication");
@@ -97,29 +100,13 @@ app.post('/api/art', (req, res) => {
 // Orders
 
 app.get('/api/orders', (req, res) => {
-
-    // Require password
-    // https://benborgers.com/posts/express-password-protect
-    const reject = () => {
-        console.log(timestamp() + " GET /api/orders... Failed authentication");
-        res.set('WWW-Authenticate', 'Basic realm="401"');
-        res.status(401).send('Authentication required.');
-    };
-
-    const authorization = req.headers.authorization;
-
-    if (!authorization) return reject();
-
-    const password = Buffer.from(authorization.replace("Basic ", ""),"base64").toString();
-
-    if (password !== PASSWORD) return reject();
-
-    console.log(timestamp() + " GET /api/orders... Success");
-    connection.query("SELECT * FROM `cs312-Order`;", (err, data) => {
-        if (err) res.json({ error: err })
-        else res.json({ data })
+    authenticate(req, res, () => {
+        console.log(timestamp() + " GET /api/orders...");
+        connection.query("SELECT * FROM `cs312-Order`;", (err, data) => {
+            if (err) res.json({ error: err })
+            else res.json({ data })
+        });
     });
-
 });
 
 app.post('/api/orders', (req, res) => {
@@ -128,6 +115,20 @@ app.post('/api/orders', (req, res) => {
     connection.query("INSERT INTO `cs312-Order` (ArtID, CustomerName, CustomerNumber, CustomerEmail, CustomerAddress) VALUES (?, ?, ?, ?, ?);", [req.body.ArtID, req.body.CustomerName, req.body.CustomerNumber, req.body.CustomerEmail, req.body.CustomerAddress], (err, data) => {
         if (err) { console.log(err); res.json({ error: err }); }
         else res.json({ data })
+    });
+});
+
+app.delete('/api/orders', (req, res) => {
+    authenticate(req, res, () => {
+        if (!req.query.id) {
+            res.json({ error: "No id specified" });
+            return;
+        }
+        console.log(timestamp() + " DELETE /api/orders... id=" + req.query.id);
+        connection.query("DELETE FROM `cs312-Order` WHERE ArtID = ?;", [req.query.id], (err, data) => {
+            if (err) { console.log(err); res.json({ error: err }); }
+            else res.json({ data })
+        });
     });
 });
 
