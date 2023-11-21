@@ -6,11 +6,11 @@ DROP TABLE IF EXISTS `cs312-Art`;
 CREATE TABLE `cs312-Art` (
     ArtID INT NOT NULL AUTO_INCREMENT,
     Name VARCHAR(255) NOT NULL,
-    CompletionDate DATE,
-    Width INT,
-    Height INT,
+    CompletionDate DATE NOT NULL,
+    Width INT NOT NULL,
+    Height INT NOT NULL,
     Price DECIMAL(6,2) NOT NULL,
-    Description VARCHAR(1024),
+    Description VARCHAR(1024) NOT NULL,
     Image MEDIUMBLOB,
     CONSTRAINT Art_PK PRIMARY KEY (ArtID)
 );

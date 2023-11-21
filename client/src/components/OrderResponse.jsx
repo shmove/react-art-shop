@@ -7,7 +7,9 @@ function errorText(errno) {
     }
 }
 
-export const OrderResponse = ({ apiJSONRes }) => {
+export const OrderResponse = ({ apiJSONRes, successMessage }) => {
+
+    console.log(JSON.stringify(apiJSONRes));
 
     if (JSON.stringify(apiJSONRes) === "{}") return;
 
@@ -17,7 +19,7 @@ export const OrderResponse = ({ apiJSONRes }) => {
         )
     } else {
         return (
-            <p className="success">Order successful!</p>
+            <p className="success">{successMessage ?? "Success!"}</p>
         )
     }
 

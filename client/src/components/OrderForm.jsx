@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as yup from 'yup';
-import OrderInput from "./OrderInput.jsx";
+import FormInput from "./FormInput.jsx";
 import OrderResponse from "./OrderResponse.jsx";
 
 export const OrderForm = ({ ArtID }) => {
@@ -14,10 +14,16 @@ export const OrderForm = ({ ArtID }) => {
     const [resJSON, setResJSON] = useState(null);
 
     const schema = yup.object().shape({
-        CustomerName: yup.string().required("Please provide your name!"),
-        CustomerNumber: yup.string().required("Please provide your phone number!").matches(/^((\+44)|(0)) ?\d{4} ?\d{6}$/, { message: "Please ensure your phone number is valid!" }), // https://stackoverflow.com/a/66516460/13460028
-        CustomerEmail: yup.string().required("Please provide your email address!").email("Please ensure your email address is valid!"),
-        CustomerAddress: yup.string().required("Please give an address to deliver to!"),
+        CustomerName: yup.string()
+            .required("Please provide your name!"),
+        CustomerNumber: yup.string()
+            .required("Please provide your phone number!")
+            .matches(/^((\+44)|(0)) ?\d{4} ?\d{6}$/, { message: "Please ensure your phone number is valid!" }), // https://stackoverflow.com/a/66516460/13460028
+        CustomerEmail: yup.string()
+            .required("Please provide your email address!")
+            .email("Please ensure your email address is valid!"),
+        CustomerAddress: yup.string()
+            .required("Please give an address to deliver to!"),
     });
 
     async function validateForm(formData) {
@@ -54,22 +60,21 @@ export const OrderForm = ({ ArtID }) => {
 
         const resJSON = await res.json();
         setResJSON(resJSON);
-        console.log(JSON.stringify(resJSON) === "{}");
     }
 
     if (resJSON !== null) {
-        return (<OrderResponse apiJSONRes={resJSON} />);
+        return (<OrderResponse apiJSONRes={resJSON} successMessage="Order successful!" />);
     } else {
         return (
             <>
                 <form className="flex flex-col gap-4 self-center items-center">
                     <p><input name="ArtID" type="hidden" value={ArtID} /></p>
-                    <OrderInput name="CustomerName" type="text" placeholder="Name"                onChange={(e) => setCustomerName(e.target.value)} />
-                    <OrderInput name="CustomerNumber" type="tel" placeholder="Phone Number"       onChange={(e) => setCustomerNumber(e.target.value)} />
-                    <OrderInput name="CustomerEmail" type="email" placeholder="Email"             onChange={(e) => setCustomerEmail(e.target.value)} />
-                    <OrderInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} />
+                    <p><FormInput name="CustomerName" type="text" placeholder="Name" onChange={(e) => setCustomerName(e.target.value)} /></p>
+                    <p><FormInput name="CustomerNumber" type="tel" placeholder="Phone Number" onChange={(e) => setCustomerNumber(e.target.value)} /></p>
+                    <p><FormInput name="CustomerEmail" type="email" placeholder="Email" onChange={(e) => setCustomerEmail(e.target.value)} /></p>
+                    <p><FormInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} /></p>
                     { formError !== "" ? <p className="my-2 text-center font-bold text-cara-failure">{formError}</p> : "" }
-                    <p><button onClick={attemptOrder} className="w-64">Order</button></p>
+                    <p><button type="button" onClick={attemptOrder} className="w-64">Order</button></p>
                 </form>
             </>
         )

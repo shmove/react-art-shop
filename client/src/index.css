@@ -42,7 +42,7 @@ p.failure {
     @apply text-center font-bold text-cara-failure text-xl;
 }
 
-button {
+button, [type="button"] {
     @apply bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2;
 }
 

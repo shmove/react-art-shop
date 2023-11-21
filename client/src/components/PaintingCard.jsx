@@ -9,8 +9,7 @@ function PaintingCard(painting) {
     const [imageSrc, setImageSrc] = useState("");
     useEffect(() => { getImage(painting["ArtID"], setImageSrc); }, [painting["ArtID"]]);
 
-    if (painting["Purchased"]) return null;
-    else return (
+    return (
         <Link to = {"/artwork/" + painting["ArtID"]}>
             <div className="card">
                 {

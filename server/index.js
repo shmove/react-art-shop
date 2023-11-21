@@ -2,24 +2,40 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(express.json());
-app.use(cors());
-
 const bodyParser = require('body-parser');
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '5mb' }))
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors());
 
 const { connection } = require('./database');
 
 const PASSWORD = "WeKnowTheGame23";
 const PORT = 8081;
 
+function authenticate(req, res, next) {
+    const reject = () => {
+        console.log(timestamp() + " Request failed authentication");
+        res.set('WWW-Authenticate', 'Basic realm="401"');
+        res.status(401).send('Authentication required.');
+    }
+
+    const authorization = req.headers.authorization;
+
+    if (!authorization) { reject(); return; }
+
+    const password = Buffer.from(authorization.replace("Basic ", ""),"base64").toString();
+
+    if (password !== PASSWORD) { reject(); return; }
+
+    next();
+}
+
 // Art
 
 function timestamp() { return "[" + new Date().toLocaleTimeString() + "]"; }
 
 app.get('/api/art/images', (req, res) => {
-   console.log(timestamp() + " GET /api/art/images... " + (req.query.id ? `id=${req.query.id}` : "No id specified"));
+   //console.log(timestamp() + " GET /api/art/images... " + (req.query.id ? `id=${req.query.id}` : "No id specified"));
 
    if (!req.query.id) {
        res.json({ error: "No id specified" });
@@ -33,7 +49,8 @@ app.get('/api/art/images', (req, res) => {
 });
 
 app.get('/api/art', (req, res) => {
-    console.log(timestamp() + " GET /api/art... " + ((req.query.id) ? `id=${req.query.id}` : (req.query.page) ? `page=${req.query.page}` : "No id or page specified"));
+    if (req.query.id) console.log(timestamp() + " GET /api/art... id=" + req.query.id);
+    else console.log(timestamp() + " GET /api/art..." + ((req.query.page) ? ` page=${req.query.page}` : "") + ((req.query.unsold) ? ` unsold=${req.query.unsold}` : ""));
 
     let query = [
         "SELECT t1.ArtID, Name, CompletionDate, Width, Height, Price, Description, CASE WHEN t2.ArtID IS NOT NULL THEN TRUE ELSE FALSE END AS Purchased",
@@ -44,22 +61,37 @@ app.get('/api/art', (req, res) => {
     ]
 
     let page = 1;
+    let whereCons = [];
     let params = [];
 
     if (req.query.id) {
-        query.splice(3, 0, "WHERE t1.ArtID = ?"); // Insert WHERE clause
+        whereCons.push("t1.ArtID = ?");
         params.push(req.query.id);
-    } else if (req.query.page) {
-        if (req.query.page > 0) page = req.query.page;
+    } else {
+        if (req.query.unsold) whereCons.push("t2.ArtID IS NULL");
+        if (req.query.page && req.query.page > 0) page = req.query.page;
     }
 
     if (page > 1) query[4] = `LIMIT ${(page - 1) * 12}, 12;`; // Set offset
+
+    query.splice(3, 0, "WHERE " + whereCons.join(" AND "));
 
     connection.query(query.join(' '), params, (err, data) => {
         if (err) res.json({ error: err })
         else res.json({ data })
     });
 
+});
+
+app.post('/api/art', (req, res) => {
+    authenticate(req, res, () => {
+        console.log(timestamp() + " POST /api/art...");
+        //console.log(JSON.stringify(req.body));
+        connection.query("INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image) VALUES (?, ?, ?, ?, ?, ?, ?);", [req.body.ArtworkName, req.body.ArtworkCompletionDate, req.body.ArtworkWidth, req.body.ArtworkHeight, req.body.ArtworkPrice, req.body.ArtworkDescription, req.body.ArtworkImage], (err, data) => {
+            if (err) { console.log(err); res.json({ error: err }); }
+            else res.json({ data })
+        });
+    });
 });
 
 // Orders

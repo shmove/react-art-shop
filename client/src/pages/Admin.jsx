@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import ArtworkCreator from "../components/ArtworkCreator.jsx";
 
 const PASSWORD = "WeKnowTheGame23";
 
@@ -73,8 +74,8 @@ function Admin() {
                     </tbody>
                 </table>
 
-                <h2 className="text-2xl font-bold text-cara-magenta">Add New Artwork</h2>
-                <p>TODO</p>
+                <h2 className="text-2xl font-bold text-cara-magenta">Create Artwork</h2>
+                <ArtworkCreator apiPass={password} />
             </div>
         )
 

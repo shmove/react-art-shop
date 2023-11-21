@@ -12,7 +12,7 @@ export async function fetchPaintingCount() {
 }
 
 export async function fetchPaintings(page) {
-    const res = await fetch("/api/art?page=" + page);
+    const res = await fetch("/api/art?page=" + page + "&unsold=true"); // get paintings that are for sale
     const json = await res.json();
     const data = json.data;
     return { data };
@@ -31,8 +31,15 @@ export async function getImage(artID, setFunc) {
     const json = await res.json();
     if (json.data[0].Image === null) return;
     const data = json.data[0].Image.data;
-    const image = "data:image/png;base64," + Buffer.from(data).toString('base64');
-    setFunc(image);
+    // Base64 encoded image
+    const def = Buffer.from(data).toString();
+    if (def.startsWith("data:image/")) setFunc(def);
+    else {
+        // Image is not base64 encoded
+        const image = "data:image/png;base64," + Buffer.from(data).toString('base64');
+        setFunc(image);
+    }
+
 }
 
 function PaintingListings() {
