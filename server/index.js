@@ -8,7 +8,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors());
 
 const { connection } = require('./database');
-const {auth} = require("mysql/lib/protocol/Auth");
 
 const PASSWORD = "WeKnowTheGame23";
 const PORT = 8081;
@@ -23,11 +22,9 @@ function authenticate(req, res, next) {
     }
 
     const authorization = req.headers.authorization;
-
     if (!authorization) { reject(); return; }
 
     const password = Buffer.from(authorization.replace("Basic ", ""),"base64").toString();
-
     if (password !== PASSWORD) { reject(); return; }
 
     next();
@@ -77,7 +74,7 @@ app.get('/api/art', (req, res) => {
 
     if (page > 1) query[4] = `LIMIT ${(page - 1) * 12}, 12;`; // Set offset
 
-    query.splice(3, 0, "WHERE " + whereCons.join(" AND "));
+    if (whereCons.length > 0) query.splice(3, 0, "WHERE " + whereCons.join(" AND "));
 
     connection.query(query.join(' '), params, (err, data) => {
         if (err) res.json({ error: err })
