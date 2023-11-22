@@ -100,7 +100,7 @@ function ArtworkCreator({ apiPass }) {
         let valid = await validateForm(formData);
         if (!valid) return;
 
-        const res = await fetch("/api/art", {
+        const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/art", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

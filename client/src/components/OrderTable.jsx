@@ -6,7 +6,7 @@ function OrderTable({ apiPass }) {
     const [orders, setOrders] = useState([]);
 
     async function getOrders() {
-        const res = await fetch("/api/orders", {
+        const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/orders", {
             method: "GET",
             headers: {
                 "Authorization": "Basic " + btoa(apiPass),
@@ -19,7 +19,7 @@ function OrderTable({ apiPass }) {
     }
 
     async function removeOrder(artID) {
-        await fetch("/api/orders?id=" + artID, {
+        await fetch(import.meta.env.VITE_BASE_URL + "/api/orders?id=" + artID, {
             method: "DELETE",
             headers: {
                 "Authorization": "Basic " + btoa(apiPass),

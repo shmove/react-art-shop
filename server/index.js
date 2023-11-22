@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
@@ -10,7 +11,7 @@ app.use(cors());
 const { connection } = require('./database');
 
 const PASSWORD = "WeKnowTheGame23";
-const PORT = 8081;
+const PORT = process.env.PORT || 3000;
 
 // Require password
 // https://benborgers.com/posts/express-password-protect

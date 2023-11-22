@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider
 } from "react-router-dom";
 import './index.css'
@@ -11,7 +11,7 @@ import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
 import Admin from "./pages/Admin.jsx";
 
-const BrowserRouter = createBrowserRouter([
+const HashRouter = createHashRouter([
     {
         path: '/',
         element: <Root />,
@@ -34,6 +34,6 @@ const BrowserRouter = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={BrowserRouter}/>
+    <RouterProvider router={HashRouter}/>
   </React.StrictMode>
 );

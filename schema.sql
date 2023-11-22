@@ -82,7 +82,7 @@ INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description
 VALUES ('The Bend in the Road', '2023-11-17', 604, 750, 305, 'TEMP', NULL);
 
 INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
-VALUES ('The Houses of Parliament', '2023-11-13', 750, 662, 335, 'TEMP', NULL);
+VALUES ('The Houses of Parliament, Sunset', '2023-11-13', 750, 662, 335, 'TEMP', NULL);
 
 INSERT INTO `cs312-Art` (Name, CompletionDate, Width, Height, Price, Description, Image)
 VALUES ('The Louvre, Afternoon, Rainy Weather', '2023-11-14', 750, 602, 320, 'TEMP', NULL);

@@ -50,7 +50,7 @@ export const OrderForm = ({ ArtID }) => {
         let valid = await validateForm(formData);
         if (!valid) return;
 
-        const res = await fetch("/api/orders", {
+        const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/orders", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

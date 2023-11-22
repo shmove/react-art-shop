@@ -4,7 +4,7 @@ import PageSelector from "../components/PageSelector.jsx";
 import {Buffer} from "buffer";
 
 export async function fetchPaintingCount() {
-    const res = await fetch("/api/");
+    const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/");
     const json = await res.json();
     const data = json.data;
     return { data };
@@ -12,14 +12,14 @@ export async function fetchPaintingCount() {
 }
 
 export async function fetchPaintings(page) {
-    const res = await fetch("/api/art?page=" + page + "&unsold=true"); // get paintings that are for sale
+    const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/art?page=" + page + "&unsold=true"); // get paintings that are for sale
     const json = await res.json();
     const data = json.data;
     return { data };
 }
 
 export async function fetchPainting(id) {
-    const res = await fetch("/api/art?id=" + id);
+    const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/art?id=" + id);
     const json = await res.json();
     const data = json.data;
     return { data };
@@ -27,7 +27,7 @@ export async function fetchPainting(id) {
 
 export async function getImage(artID, setFunc) {
     setFunc("");
-    const res = await fetch("/api/art/images?id=" + artID);
+    const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/art/images?id=" + artID);
     const json = await res.json();
     if (json.data[0].Image === null) return;
     const data = json.data[0].Image.data;
