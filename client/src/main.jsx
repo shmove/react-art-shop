@@ -10,6 +10,7 @@ import Root from "./Root.jsx";
 import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
 import Admin from "./pages/Admin.jsx";
+import Basket from "./pages/Basket.jsx";
 
 const HashRouter = createHashRouter([
     {
@@ -23,6 +24,10 @@ const HashRouter = createHashRouter([
             {
                 path: '/artwork/:id',
                 element: <Artwork />
+            },
+            {
+                path: '/basket',
+                element: <Basket />
             },
             {
                 path: '/admin',

@@ -1,7 +1,16 @@
 import {Link, Outlet} from "react-router-dom";
 import {ShoppingBagIcon, WrenchScrewdriverIcon} from "@heroicons/react/24/solid/index.js";
+import {getBasket} from "./pages/Basket.jsx";
+import {useEffect, useState} from "react";
 
 function Root() {
+
+    const [basketItems, setBasketItems] = useState(0);
+
+    // Update basket items on page load and basket update
+    useEffect(() => { setBasketItems(getBasket().length); }, []);
+    document.addEventListener('basketUpdate', () => { setBasketItems(getBasket().length); }, false);
+
     return (
         <>
             <div className="flex justify-center relative">
@@ -15,7 +24,17 @@ function Root() {
 
                 <div className="absolute top-1/2 translate-y-[-50%] right-4">
                     <Link to="/basket">
-                        <ShoppingBagIcon className="w-16 h-16 hover-raise" />
+                        <div className="relative hover-raise">
+                            <ShoppingBagIcon className="w-16 h-16" />
+                            {
+                                basketItems > 0 &&
+                                <div className="absolute bottom-0 right-0 w-6 h-6 bg-cara-violet rounded-full flex justify-center items-center animate-jump-in animate-duration-200">
+                                    <p className="font-bold text-cara-whiter">{basketItems}</p>
+                                </div>
+                            }
+
+                        </div>
+
                     </Link>
                 </div>
             </div>

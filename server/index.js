@@ -110,10 +110,15 @@ app.get('/api/orders', (req, res) => {
 app.post('/api/orders', (req, res) => {
     console.log(timestamp() + " POST /api/orders...");
     console.log(JSON.stringify(req.body));
-    connection.query("INSERT INTO `cs312-Order` (ArtID, CustomerName, CustomerNumber, CustomerEmail, CustomerAddress) VALUES (?, ?, ?, ?, ?);", [req.body.ArtID, req.body.CustomerName, req.body.CustomerNumber, req.body.CustomerEmail, req.body.CustomerAddress], (err, data) => {
-        if (err) { console.log(err); res.json({ error: err }); }
-        else res.json({ data })
-    });
+    const artworks = req.body.ArtIDList;
+    let dataArr = [];
+    for (let i = 0; i < artworks.length; i++) {
+        connection.query("INSERT INTO `cs312-Order` (ArtID, CustomerName, CustomerNumber, CustomerEmail, CustomerAddress) VALUES (?, ?, ?, ?, ?);", [artworks[i], req.body.CustomerName, req.body.CustomerNumber, req.body.CustomerEmail, req.body.CustomerAddress], (err, data) => {
+            if (err) { console.log(err); res.json({ error: err }); }
+            else dataArr.push(data);
+        });
+    }
+    res.json({ dataArr });
 });
 
 app.delete('/api/orders', (req, res) => {
@@ -134,9 +139,17 @@ app.delete('/api/orders', (req, res) => {
 
 app.get('/api', (req, res) => {
     console.log(timestamp() + " GET /api...");
-    connection.query("SELECT COUNT(*) AS NumberOfArtworks FROM `cs312-Art`;", (err, data) => {
+
+    connection.query("SELECT COUNT(*) AS NumberOfArtworks FROM `cs312-Art`;", (err, q1) => {
         if (err) res.json({ error: err })
-        else res.json({ data:data[0] })
+        else connection.query("SELECT COUNT(*) AS NumberOfArtworks FROM `cs312-Art` WHERE ArtID NOT IN (SELECT ArtID FROM `cs312-Order`);", (err, q2) => {
+            if (err) res.json({ error: err })
+            else {
+                const totalArtworks = q1[0].NumberOfArtworks;
+                const totalAvailableArtworks = q2[0].NumberOfArtworks;
+                res.json({ data : { NumberOfArtworks: totalArtworks, NumberOfAvailableArtworks: totalAvailableArtworks } });
+            }
+        });
     });
 });
 

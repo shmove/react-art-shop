@@ -4,10 +4,12 @@ import {useEffect, useState} from "react";
 import {getImage} from "../pages/PaintingListings.jsx";
 import { Spinner } from 'flowbite-react';
 
-function PaintingCard(painting) {
+function PaintingCard({ painting }) {
 
     const [imageSrc, setImageSrc] = useState("");
-    useEffect(() => { getImage(painting["ArtID"], setImageSrc); }, [painting["ArtID"]]);
+    useEffect(() => {
+        getImage(painting["ArtID"]).then((res) => { setImageSrc(res); });
+    }, [painting["ArtID"]]);
 
     return (
         <Link to = {"/artwork/" + painting["ArtID"]}>

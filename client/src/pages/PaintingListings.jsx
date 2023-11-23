@@ -25,19 +25,17 @@ export async function fetchPainting(id) {
     return { data };
 }
 
-export async function getImage(artID, setFunc) {
-    setFunc("");
+export async function getImage(artID) {
     const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/art/images?id=" + artID);
     const json = await res.json();
-    if (json.data[0].Image === null) return;
+    if (json.data[0].Image === null) return null;
     const data = json.data[0].Image.data;
     // Base64 encoded image
     const def = Buffer.from(data).toString();
-    if (def.startsWith("data:image/")) setFunc(def);
+    if (def.startsWith("data:image/")) return def;
     else {
         // Image is not base64 encoded
-        const image = "data:image/png;base64," + Buffer.from(data).toString('base64');
-        setFunc(image);
+        return "data:image/png;base64," + Buffer.from(data).toString('base64');
     }
 
 }
@@ -50,7 +48,7 @@ function PaintingListings() {
 
     // Fetch painting count on page load
     useEffect(() => {
-        fetchPaintingCount().then((res) => { setPaintingCount(Math.ceil(res.data.NumberOfArtworks / 12)); });
+        fetchPaintingCount().then((res) => { setPaintingCount(Math.ceil(res.data.NumberOfAvailableArtworks / 12)); });
     }, []);
 
     // Fetch paintings on page change
@@ -62,7 +60,7 @@ function PaintingListings() {
         <>
             <PageSelector currentPage={page} totalPages={paintingCount} setPage={setPage} />
             <div className="columns-3 mx-72 gap-8">
-                { paintings.map((painting) => { return <PaintingCard {...painting} />; }) }
+                { paintings.map((painting) => { return <PaintingCard painting={painting} />; }) }
             </div>
         </>
 

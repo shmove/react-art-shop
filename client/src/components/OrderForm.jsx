@@ -1,9 +1,8 @@
 import { useState } from "react";
 import * as yup from 'yup';
 import FormInput from "./FormInput.jsx";
-import OrderResponse from "./OrderResponse.jsx";
 
-export const OrderForm = ({ ArtID }) => {
+export const OrderForm = ({ ArtIDList, onOrder }) => {
 
     const [CustomerName, setCustomerName] = useState("");
     const [CustomerNumber, setCustomerNumber] = useState("");
@@ -11,7 +10,6 @@ export const OrderForm = ({ ArtID }) => {
     const [CustomerAddress, setCustomerAddress] = useState("");
 
     const [formError, setFormError] = useState("");
-    const [resJSON, setResJSON] = useState(null);
 
     const schema = yup.object().shape({
         CustomerName: yup.string()
@@ -40,7 +38,7 @@ export const OrderForm = ({ ArtID }) => {
 
     async function attemptOrder() {
         let formData = {
-            ArtID: ArtID,
+            ArtIDList: ArtIDList,
             CustomerName: CustomerName,
             CustomerNumber: CustomerNumber,
             CustomerEmail: CustomerEmail,
@@ -59,26 +57,21 @@ export const OrderForm = ({ ArtID }) => {
         });
 
         const resJSON = await res.json();
-        setResJSON(resJSON);
+        onOrder(resJSON);
     }
 
-    if (resJSON !== null) {
-        return (<OrderResponse apiJSONRes={resJSON} successMessage="Order successful!" />);
-    } else {
-        return (
-            <>
-                <form className="flex flex-col gap-4 self-center items-center">
-                    <p><input name="ArtID" type="hidden" value={ArtID} /></p>
-                    <p><FormInput name="CustomerName" type="text" placeholder="Name" onChange={(e) => setCustomerName(e.target.value)} /></p>
-                    <p><FormInput name="CustomerNumber" type="tel" placeholder="Phone Number" onChange={(e) => setCustomerNumber(e.target.value)} /></p>
-                    <p><FormInput name="CustomerEmail" type="email" placeholder="Email" onChange={(e) => setCustomerEmail(e.target.value)} /></p>
-                    <p><FormInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} /></p>
-                    { formError !== "" ? <p className="my-2 text-center font-bold text-cara-failure">{formError}</p> : "" }
-                    <p><button type="button" onClick={attemptOrder} className="w-64">Order</button></p>
-                </form>
-            </>
-        )
-    }
+    return (
+        <>
+            <form className="flex flex-col gap-4 self-center items-center">
+                <p><FormInput name="CustomerName" type="text" placeholder="Name" onChange={(e) => setCustomerName(e.target.value)} /></p>
+                <p><FormInput name="CustomerNumber" type="tel" placeholder="Phone Number" onChange={(e) => setCustomerNumber(e.target.value)} /></p>
+                <p><FormInput name="CustomerEmail" type="email" placeholder="Email" onChange={(e) => setCustomerEmail(e.target.value)} /></p>
+                <p><FormInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} /></p>
+                { formError !== "" ? <p className="my-2 text-center font-bold text-cara-failure">{formError}</p> : "" }
+                <p><button type="button" onClick={attemptOrder} className="w-64">Order</button></p>
+            </form>
+        </>
+    )
 
 }
 
