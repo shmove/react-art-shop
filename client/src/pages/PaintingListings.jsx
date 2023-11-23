@@ -2,6 +2,7 @@ import PaintingCard from "../components/PaintingCard.jsx";
 import {useEffect, useState} from "react";
 import PageSelector from "../components/PageSelector.jsx";
 import {Buffer} from "buffer";
+import {Spinner} from "flowbite-react";
 
 export async function fetchPaintingCount() {
     const res = await fetch(import.meta.env.VITE_BASE_URL + "/api/");
@@ -44,7 +45,7 @@ function PaintingListings() {
 
     const [page, setPage] = useState(1);
     const [paintings, setPaintings] = useState([]);
-    const [paintingCount, setPaintingCount] = useState(0);
+    const [paintingCount, setPaintingCount] = useState(-1);
 
     // Fetch painting count on page load
     useEffect(() => {
@@ -55,6 +56,12 @@ function PaintingListings() {
     useEffect(() => {
         fetchPaintings(page).then((res) => { setPaintings(res.data); });
     }, [page]);
+
+    if (paintingCount === -1) return (
+        <div className="my-auto flex items-center justify-center">
+            <Spinner className="h-32 w-32 text-cara-whiter fill-cara-violet"/>
+        </div>
+    );
 
     return (
         <>
