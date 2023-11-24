@@ -167,7 +167,7 @@ function ArtworkCreator({ apiPass }) {
                                     : <img src={previewSrc} alt="Preview" />
                             }
                         </div>
-                        <FormInput name="Image" type="file" placeholder="Image" onChange={onImageChange} /> {/* TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers */}
+                        <FormInput name="Image" type="file" placeholder="Image" onChange={onImageChange} accept="image/*" />
                     </div>
                 </div>
                 <button type="button" onClick={attemptAddArtwork}>Add</button>
