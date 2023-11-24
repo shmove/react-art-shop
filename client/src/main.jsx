@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 
-import Root from "./Root.jsx";
+import Root from "./pages/Root.jsx";
 import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
 import Admin from "./pages/Admin.jsx";

@@ -1,3 +1,4 @@
+import './styles/PaintingListings.css';
 import PaintingCard from "../components/PaintingCard.jsx";
 import {useEffect, useState} from "react";
 import PageSelector from "../components/PageSelector.jsx";
@@ -66,7 +67,7 @@ function PaintingListings() {
     return (
         <>
             <PageSelector currentPage={page} totalPages={paintingCount} setPage={setPage} />
-            <div className="columns-1 mx-4 gap-8">
+            <div className="paintings-grid">
                 { paintings.map((painting) => { return <PaintingCard painting={painting} />; }) }
             </div>
         </>

@@ -9,7 +9,9 @@
 }
 
 .card-row {
-    @apply flex flex-row justify-between items-center gap-2 mx-1 py-1;
+    @apply flex flex-row justify-between items-center gap-2;
+    @apply mx-1 py-1;
+    @apply lg:mx-2 lg:py-2;
 }
 
 .card-row-important {
@@ -21,7 +23,9 @@
 }
 
 .card-content h2 {
-    @apply text-cara-magenta font-bold text-xl;
+    @apply text-cara-magenta font-bold;
+    @apply text-xl;
+    @apply xl:text-2xl;
 }
 
 .card-content h3 {

@@ -1,7 +1,7 @@
 import "./styles/Admin.css";
 
 import {useState} from "react";
-import OrderTable from "../components/OrderTable.jsx";
+import OrderCards from "../components/OrderCards.jsx";
 import ArtworkCreator from "../components/ArtworkCreator.jsx";
 import Lightswitch from "../components/Lightswitch.jsx";
 
@@ -39,7 +39,7 @@ function Admin() {
                     panel === 2 &&
                     <div id="order-panel">
                         <h2>Orders</h2>
-                        <OrderTable apiPass={password} />
+                        <OrderCards apiPass={password} />
                     </div>
                 }
             </div>

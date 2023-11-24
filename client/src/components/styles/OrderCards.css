@@ -1,0 +1,44 @@
+.order-card {
+    @apply flex justify-center items-stretch relative overflow-clip;
+    @apply w-80 lg:w-11/12;
+    @apply flex-row lg:flex-col;
+    @apply drop-shadow-md;
+}
+
+.order-id {
+    @apply flex bg-cara-violet;
+    @apply items-center justify-center;
+    @apply rounded-l-xl lg:rounded-t-xl lg:rounded-bl-none;
+    @apply basis-6 lg:basis-12;
+}
+
+.order-id h2 {
+    @apply text-cara-whiter;
+    @apply text-sm lg:text-2xl;
+    @apply transform -rotate-90 lg:rotate-0;
+    @apply underline hover:text-cara-white;
+}
+
+.order-details {
+    @apply flex flex-col grow bg-cara-whiter p-2;
+    @apply lg:rounded-b-xl lg:p-4;
+}
+
+.order-details p {
+    @apply lg:font-bold;
+}
+
+.order-details span {
+    @apply float-right font-light lg:float-none;
+}
+
+.order-remove {
+    @apply flex basis-1/5 bg-cara-offwhite rounded-r-xl;
+    @apply lg:absolute lg:w-24 lg:h-12 lg:top-0 lg:right-0 lg:rounded-br-none;
+    @apply items-center justify-center;
+    @apply cursor-pointer;
+}
+
+.order-remove svg {
+    @apply w-12 h-12;
+}

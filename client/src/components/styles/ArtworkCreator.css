@@ -3,19 +3,19 @@ form {
 }
 
 .form-content {
-    /* @apply flex flex-row gap-8 */
     @apply flex flex-col items-center gap-4;
     @apply flex-col-reverse;
+    @apply lg:flex-row lg:gap-4;
 }
 
 .form-inputs {
-    /*@apply flex flex-col gap-4 justify-center;*/
     @apply flex flex-col gap-2;
+    @apply lg:gap-4 lg:justify-center;
 }
 
 .form-image-input {
-    /* @apply flex flex-col gap-4 items-center; */
     @apply flex flex-col items-center gap-1;
+    @apply lg:gap-4;
 }
 
 .form-image-input .preview {

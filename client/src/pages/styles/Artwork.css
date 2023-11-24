@@ -1,22 +1,22 @@
 .artwork-layout {
-    /* @apply flex flex-row grow mx-24 align-middle; */
-    /* @apply gap-4 justify-center items-center; */
-    @apply flex flex-col grow mx-4;
-    @apply gap-2 justify-center items-center;
+    @apply flex grow;
+    @apply flex-col lg:flex-row;
+    @apply mx-4 lg:mx-24;
+    @apply lg:align-middle;
+    @apply justify-center items-center;
+    @apply gap-2 lg:gap-12;
 }
 
 .image-panel {
-    /* @apply flex basis-3/4 justify-center items-center */
-    @apply flex basis-3/4;
+    @apply flex lg:flex-col lg:self-start;
 }
 
 .image-panel img {
-    @apply object-contain;
+    @apply object-contain lg:sticky;
 }
 
 .info-panel {
-    /* @apply flex flex-grow flex-col gap-3 items-center */
-    @apply flex flex-col gap-3 items-center;
+    @apply flex w-full lg:w-1/4 flex-col gap-3;
 }
 
 .info-panel h3 {
@@ -28,6 +28,6 @@
 }
 
 .info-panel button {
-    @apply sticky bottom-4 shadow-lg;
-    @apply w-11/12 h-16;
+    @apply sticky bottom-4 shadow-lg self-center;
+    @apply w-96 lg:w-11/12 h-16;
 }

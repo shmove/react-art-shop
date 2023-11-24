@@ -20,5 +20,5 @@
 }
 
 #artwork-panel, #order-panel {
-    @apply flex flex-col items-center gap-4;
+    @apply flex flex-col w-full items-center gap-4;
 }

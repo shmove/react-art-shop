@@ -1,6 +1,7 @@
+import './styles/Root.css';
 import {Link, Outlet} from "react-router-dom";
 import {ShoppingBagIcon, WrenchScrewdriverIcon} from "@heroicons/react/24/solid/index.js";
-import {getBasket} from "./pages/Basket.jsx";
+import {getBasket} from "./Basket.jsx";
 import {useEffect, useState} from "react";
 
 function Root() {
@@ -13,23 +14,23 @@ function Root() {
 
     return (
         <>
-            <div className="flex justify-center relative">
-                <div className="absolute top-1/2 translate-y-[-50%] left-4">
+            <nav>
+                <div className="left-4">
                     <Link to="/admin">
-                        <WrenchScrewdriverIcon className="w-12 h-12 hover-raise" />
+                        <WrenchScrewdriverIcon className="hover-raise" />
                     </Link>
                 </div>
 
                 <Link to="/"><h1 className="py-6 font-serif hover-raise">Cara's Paints</h1></Link>
 
-                <div className="absolute top-1/2 translate-y-[-50%] right-4">
+                <div className="right-4">
                     <Link to="/basket">
                         <div className="relative hover-raise">
-                            <ShoppingBagIcon className="w-12 h-12" />
+                            <ShoppingBagIcon />
                             {
                                 basketItems > 0 &&
-                                <div className="absolute bottom-0 right-0 w-4 h-4 bg-cara-violet rounded-full flex justify-center items-center animate-jump-in animate-duration-200">
-                                    <p className="font-bold text-cara-whiter">{basketItems}</p>
+                                <div className="basket-counter">
+                                    <p>{basketItems}</p>
                                 </div>
                             }
 
@@ -37,7 +38,7 @@ function Root() {
 
                     </Link>
                 </div>
-            </div>
+            </nav>
 
             <hr className="mb-6"/>
 

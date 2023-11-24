@@ -1,9 +1,9 @@
-import './styles/OrderTable.css';
+import './styles/OrderCards.css';
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {XMarkIcon} from "@heroicons/react/24/solid/index.js";
 
-function OrderTable({ apiPass }) {
+function OrderCards({ apiPass }) {
 
     const [orders, setOrders] = useState([]);
 
@@ -48,7 +48,9 @@ function OrderTable({ apiPass }) {
                     return (
                         <div className="order-card">
                             <div className="order-id">
-                                <Link to={"/artwork/" + order["ArtID"]}><h2>{order["ArtID"]}</h2></Link>
+                                <Link to={"/artwork/" + order["ArtID"]}>
+                                    <h2 className="lg:before:content-['Artwork_#']">{order["ArtID"]}</h2>
+                                </Link>
                             </div>
                             <div className="order-details">
                                 <p>Name: <span>{order["CustomerName"]}</span></p>
@@ -70,4 +72,4 @@ function OrderTable({ apiPass }) {
 
 }
 
-export default OrderTable;
+export default OrderCards;

@@ -1,0 +1,6 @@
+.paintings-grid {
+    @apply columns-1 mx-4 gap-8;
+    @apply md:columns-2 md:mx-16;
+    @apply lg:columns-3 lg:mx-24;
+    @apply xl:mx-48;
+}

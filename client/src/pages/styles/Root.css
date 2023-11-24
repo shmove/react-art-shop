@@ -1,0 +1,11 @@
+.basket-counter {
+    @apply absolute bottom-0 right-0;
+    @apply bg-cara-violet rounded-full;
+    @apply flex justify-center items-center;
+    @apply animate-jump-in animate-duration-200;
+    @apply w-4 h-4 lg:w-6 lg:h-6;
+}
+
+.basket-counter p {
+    @apply font-bold text-cara-whiter;
+}
