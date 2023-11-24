@@ -1,7 +1,7 @@
 import './styles/PaintingCard.css'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getImage} from "../pages/PaintingListings.jsx";
+import {displayPrice, getImage} from "../pages/PaintingListings.jsx";
 import { Spinner } from 'flowbite-react';
 
 function PaintingCard({ painting }) {
@@ -16,7 +16,7 @@ function PaintingCard({ painting }) {
             <div className="card">
                 {
                     (imageSrc !== "")
-                        ? <img src={imageSrc} alt={painting["Description"]} />
+                        ? <img src={imageSrc} alt={painting["Name"]} />
                         : <div className="h-72 flex flex-col justify-center items-center">
                             <Spinner className="h-16 w-16 text-cara-white fill-cara-violet"/>
                         </div>
@@ -26,7 +26,7 @@ function PaintingCard({ painting }) {
                         <div className="card-row-important">
                             <h2>{painting["Name"]}</h2>
                         </div>
-                        <p>£{painting["Price"]}</p>
+                        <p>{displayPrice(painting["Price"])}</p>
                     </div>
                 </div>
             </div>

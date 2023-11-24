@@ -38,7 +38,7 @@ function Admin() {
                 {
                     panel === 2 &&
                     <div id="order-panel">
-                        <h2>Orders</h2>
+                        <h2>Manage Orders</h2>
                         <OrderCards apiPass={password} />
                     </div>
                 }

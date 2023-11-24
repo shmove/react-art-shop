@@ -2,7 +2,7 @@ import './styles/Artwork.css';
 
 import {useParams} from "react-router-dom";
 
-import {fetchPainting, getImage} from "./PaintingListings.jsx";
+import {displayPrice, fetchPainting, getImage} from "./PaintingListings.jsx";
 import {useEffect, useState} from "react";
 import {Spinner} from "flowbite-react";
 import {addToBasket, getBasket, removeFromBasket} from "./Basket.jsx";
@@ -37,14 +37,14 @@ function Artwork() {
         <div className="artwork-layout">
 
             <div className="image-panel">
-                <img src={imageSrc} alt={painting["Description"]} />
+                <img src={imageSrc} alt={painting["Name"]} />
             </div>
 
             <div className="info-panel">
                 <div>
                     <h1>{painting["Name"]}</h1>
                     <h3>({painting["Width"]} x {painting["Height"]} mm)</h3>
-                    <h2>£{painting["Price"]}</h2>
+                    <h2>{displayPrice(painting["Price"])}</h2>
                     <p>"{painting["Description"]}"</p>
                     <p><em>Estimated completion date: {new Date(painting["CompletionDate"]).toDateString()}</em></p>
                 </div>

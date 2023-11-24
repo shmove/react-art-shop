@@ -42,6 +42,11 @@ export async function getImage(artID) {
 
 }
 
+export function displayPrice(price) {
+    if (price === undefined) return "";
+    return "£" + price.toFixed(2);
+}
+
 function PaintingListings() {
 
     const [page, setPage] = useState(1);

@@ -1,6 +1,6 @@
 import './styles/BasketCard.css';
 import {useEffect, useState} from "react";
-import {fetchPainting, getImage} from "../pages/PaintingListings.jsx";
+import {displayPrice, fetchPainting, getImage} from "../pages/PaintingListings.jsx";
 import {XMarkIcon} from "@heroicons/react/24/solid/index.js";
 import {Link} from "react-router-dom";
 import {Spinner} from "flowbite-react";
@@ -30,7 +30,7 @@ function BasketCard({ artID, onRemove }) {
 
                             <Link to={"/artwork/" + painting["ArtID"]}>
                                 <div className="basket-card-image">
-                                    <img src={imageSrc} alt={painting["Description"]} className="hover-raise" />
+                                    <img src={imageSrc} alt={painting["Name"]} className="hover-raise" />
                                 </div>
                             </Link>
                             <div className="basket-card-info">
@@ -42,7 +42,7 @@ function BasketCard({ artID, onRemove }) {
                                 {
                                     painting["Purchased"] === 1
                                         ? <h2 className="text-cara-failure">Already Sold</h2>
-                                        : <h2>£{painting["Price"]}</h2>
+                                        : <h2>{displayPrice(painting["Price"])}</h2>
                                 }
 
                             </div>
