@@ -76,6 +76,11 @@ button.unselectable {
     @apply bg-cara-grey hover:bg-cara-grey;
 }
 
+#empty-notif {
+    @apply flex bg-cara-whiter rounded-xl self-center justify-center items-center;
+    @apply w-72 lg:w-96 h-32;
+}
+
 footer {
     @apply mt-auto mx-2;
     @apply text-center;

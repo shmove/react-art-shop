@@ -1,8 +1,8 @@
 import './styles/PaintingCard.css'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {displayPrice, getImage} from "../pages/PaintingListings.jsx";
 import { Spinner } from 'flowbite-react';
+import {displayPrice, getImage} from "../utils/artUtils.jsx";
 
 function PaintingCard({ painting }) {
 

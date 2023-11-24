@@ -11,6 +11,7 @@ import PaintingListings from "./pages/PaintingListings.jsx";
 import Artwork from "./pages/Artwork.jsx";
 import Admin from "./pages/Admin.jsx";
 import Basket from "./pages/Basket.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const HashRouter = createHashRouter([
     {
@@ -33,7 +34,8 @@ const HashRouter = createHashRouter([
                 path: '/admin',
                 element: <Admin />
             }
-        ]
+        ],
+        errorElement: <NotFound />
     },
 ]);
 

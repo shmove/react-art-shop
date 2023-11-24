@@ -2,10 +2,10 @@ import './styles/Artwork.css';
 
 import {useParams} from "react-router-dom";
 
-import {displayPrice, fetchPainting, getImage} from "./PaintingListings.jsx";
 import {useEffect, useState} from "react";
 import {Spinner} from "flowbite-react";
-import {addToBasket, getBasket, removeFromBasket} from "./Basket.jsx";
+import {addToBasket, getBasket, removeFromBasket} from "../utils/basketUtils.jsx";
+import {displayPrice, fetchPainting, getImage} from "../utils/artUtils.jsx";
 
 function Artwork() {
 

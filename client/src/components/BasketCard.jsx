@@ -1,9 +1,9 @@
 import './styles/BasketCard.css';
 import {useEffect, useState} from "react";
-import {displayPrice, fetchPainting, getImage} from "../pages/PaintingListings.jsx";
 import {XMarkIcon} from "@heroicons/react/24/solid/index.js";
 import {Link} from "react-router-dom";
 import {Spinner} from "flowbite-react";
+import {displayPrice, fetchPainting, getImage} from "../utils/artUtils.jsx";
 
 function BasketCard({ artID, onRemove }) {
 
@@ -19,7 +19,7 @@ function BasketCard({ artID, onRemove }) {
         <div className="basket-card">
             <div className="basket-card-content">
                 {
-                    (painting === {} || imageSrc === "")
+                    (JSON.stringify(painting) === "{}" || imageSrc === "")
                         ?
                         <div className="my-auto flex grow items-center justify-center">
                             <Spinner className="h-16 w-16 text-cara-white fill-cara-violet"/>

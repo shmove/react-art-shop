@@ -79,37 +79,13 @@ function ArtworkCreator({ apiPass }) {
 
     async function attemptAddArtwork() {
 
-        // https://stackoverflow.com/a/33291682/13460028, https://imagekit.io/blog/how-to-resize-image-in-javascript/
-        const prepareImage = file => new Promise((resolve, reject) => {
-            if (file === null) resolve(null);
-            const MAX_DIMENSION = 750;
+        // https://stackoverflow.com/a/57272491/13460028
+        const toBase64 = image => new Promise((resolve, reject) => {
+            if (image === null) resolve(null);
             const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.onload = function (e) {
-                    let width = img.width;
-                    let height = img.height;
-                    if (width > height) {
-                        if (width > MAX_DIMENSION) {
-                            height *= MAX_DIMENSION / width;
-                            width = MAX_DIMENSION;
-                        }
-                    } else {
-                        if (height > MAX_DIMENSION) {
-                            width *= MAX_DIMENSION / height;
-                            height = MAX_DIMENSION;
-                        }
-                    }
-                    let canvas = document.createElement("canvas");
-                    let ctx = canvas.getContext("2d");
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    resolve(canvas.toDataURL('base64'));
-                }
-                img.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(image);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
         });
 
         let formData = {
@@ -119,7 +95,7 @@ function ArtworkCreator({ apiPass }) {
             ArtworkHeight: ArtworkHeight,
             ArtworkPrice: ArtworkPrice,
             ArtworkDescription: ArtworkDescription,
-            ArtworkImage: await prepareImage(ArtworkImage),
+            ArtworkImage: await toBase64(ArtworkImage),
         }
 
         let valid = await validateForm(formData);

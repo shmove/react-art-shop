@@ -46,7 +46,7 @@ function OrderCards({ apiPass }) {
             <>
                 { orders.map((order) => {
                     return (
-                        <div className="order-card">
+                        <div key={order["ArtID"]} className="order-card">
                             <div className="order-id">
                                 <Link to={"/artwork/" + order["ArtID"]}>
                                     <h2 className="lg:before:content-['Artwork_#']">{order["ArtID"]}</h2>
@@ -55,7 +55,6 @@ function OrderCards({ apiPass }) {
                             <div className="order-details">
                                 <p>Name: <span>{order["CustomerName"]}</span></p>
                                 <p>Number: <span>{order["CustomerNumber"]}</span></p>
-                                <p>Email: <span>{order["CustomerEmail"]}</span></p>
                                 <p>Email: <span>{order["CustomerEmail"]}</span></p>
                                 <p>Address: <span>{order["CustomerAddress"]}</span></p>
                             </div>

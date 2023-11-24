@@ -1,8 +1,8 @@
 import './styles/Root.css';
 import {Link, Outlet} from "react-router-dom";
 import {ShoppingBagIcon, WrenchScrewdriverIcon} from "@heroicons/react/24/solid/index.js";
-import {getBasket} from "./Basket.jsx";
 import {useEffect, useState} from "react";
+import {getBasket} from "../utils/basketUtils.jsx";
 
 function Root() {
 
