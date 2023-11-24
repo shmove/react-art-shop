@@ -66,7 +66,7 @@ function PaintingListings() {
     return (
         <>
             <PageSelector currentPage={page} totalPages={paintingCount} setPage={setPage} />
-            <div className="columns-3 mx-72 gap-8">
+            <div className="columns-1 mx-4 gap-8">
                 { paintings.map((painting) => { return <PaintingCard painting={painting} />; }) }
             </div>
         </>

@@ -1,3 +1,5 @@
+import './styles/Artwork.css';
+
 import {useParams} from "react-router-dom";
 
 import {fetchPainting, getImage} from "./PaintingListings.jsx";
@@ -25,36 +27,38 @@ function Artwork() {
         });
     }, [id]);
 
-    if (JSON.stringify(painting) !== "{}" && imageSrc !== "") return (
-        <div className="flex grow flex-row gap-4 mx-24 justify-center items-center align-middle">
+    if (JSON.stringify(painting) === "{}" && imageSrc === "") return (
+        <div className="flex grow flex-col justify-center items-center">
+            <Spinner className="h-32 w-32 text-cara-whiter fill-cara-violet"/>
+        </div>
+    )
 
-            <div className="flex basis-3/4 justify-center items-center">
-                <img src={imageSrc} alt={painting["Description"]} className="object-contain" />
+    return (
+        <div className="artwork-layout">
+
+            <div className="image-panel">
+                <img src={imageSrc} alt={painting["Description"]} />
             </div>
 
-            <div className="flex flex-grow flex-col gap-3 items-center">
-                <div className="text-center">
+            <div className="info-panel">
+                <div>
                     <h1>{painting["Name"]}</h1>
                     <h3>({painting["Width"]} x {painting["Height"]} mm)</h3>
                     <h2>£{painting["Price"]}</h2>
                     <p>"{painting["Description"]}"</p>
-                    <p>Estimated completion date: {new Date(painting["CompletionDate"]).toDateString()}</p>
+                    <p><em>Estimated completion date: {new Date(painting["CompletionDate"]).toDateString()}</em></p>
                 </div>
                 {
                     painting["Purchased"] === 1
                     ? <p className="failure">Sold</p>
                     :   inBasket
-                        ? <button className="w-64 bg-cara-success hover:bg-cara-success-dark" onClick={() => { removeFromBasket(id); }}>Remove from basket</button>
-                        : <button className="w-64" onClick={() => { addToBasket(id); }}>Add to basket</button>
+                        ? <button className="toggled" onClick={() => { removeFromBasket(id); }}>Remove from basket</button>
+                        : <button onClick={() => { addToBasket(id); }}>Add to basket</button>
                 }
             </div>
+
         </div>
     )
-    else return (
-        <div className="flex grow flex-col justify-center items-center">
-            <Spinner className="h-32 w-32 text-cara-whiter fill-cara-violet"/>
-        </div>
-    );
 }
 
 export default Artwork;

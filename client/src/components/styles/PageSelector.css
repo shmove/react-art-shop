@@ -1,0 +1,11 @@
+.page-selector {
+    @apply flex justify-center items-center mb-4;
+}
+
+.page-selector button {
+    @apply w-24;
+}
+
+.page-selector span {
+    @apply text-cara-magenta font-bold text-xl mx-4;
+}

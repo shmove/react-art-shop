@@ -1,0 +1,33 @@
+.artwork-layout {
+    /* @apply flex flex-row grow mx-24 align-middle; */
+    /* @apply gap-4 justify-center items-center; */
+    @apply flex flex-col grow mx-4;
+    @apply gap-2 justify-center items-center;
+}
+
+.image-panel {
+    /* @apply flex basis-3/4 justify-center items-center */
+    @apply flex basis-3/4;
+}
+
+.image-panel img {
+    @apply object-contain;
+}
+
+.info-panel {
+    /* @apply flex flex-grow flex-col gap-3 items-center */
+    @apply flex flex-col gap-3 items-center;
+}
+
+.info-panel h3 {
+    @apply text-sm mb-2;
+}
+
+.info-panel h2 {
+    @apply text-2xl mb-2;
+}
+
+.info-panel button {
+    @apply sticky bottom-4 shadow-lg;
+    @apply w-11/12 h-16;
+}

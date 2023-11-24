@@ -1,5 +1,7 @@
+import './styles/OrderTable.css';
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {XMarkIcon} from "@heroicons/react/24/solid/index.js";
 
 function OrderTable({ apiPass }) {
 
@@ -37,40 +39,32 @@ function OrderTable({ apiPass }) {
 
     if (orders.length === 0) {
         return (
-            <p className="text-cara-violet font-light"><em>No orders found.</em></p>
+            <p><em>No orders found.</em></p>
         )
     } else {
         return (
-            <table className="table-auto">
-                <thead>
-                <tr>
-                    <th>ArtID</th>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    orders.map((order) => {
-                        return (
-                            <tr>
-                                <td><Link to={"/artwork/" + order["ArtID"]}>{order["ArtID"]}</Link></td>
-                                <td>{order["CustomerName"]}</td>
-                                <td>{order["CustomerNumber"]}</td>
-                                <td>{order["CustomerEmail"]}</td>
-                                <td>{order["CustomerAddress"]}</td>
-                                <td><button onClick={()=> removeOrder(order["ArtID"])} className="mx-4 bg-cara-failure hover:bg-cara-failure-dark text-cara-whiter font-bold px-2 rounded-xl">
-                                    Remove
-                                </button></td>
-                            </tr>
-                        )
-                    })
-                }
-                </tbody>
-            </table>
+            <>
+                { orders.map((order) => {
+                    return (
+                        <div className="order-card">
+                            <div className="order-id">
+                                <Link to={"/artwork/" + order["ArtID"]}><h2>{order["ArtID"]}</h2></Link>
+                            </div>
+                            <div className="order-details">
+                                <p>Name: <span>{order["CustomerName"]}</span></p>
+                                <p>Number: <span>{order["CustomerNumber"]}</span></p>
+                                <p>Email: <span>{order["CustomerEmail"]}</span></p>
+                                <p>Email: <span>{order["CustomerEmail"]}</span></p>
+                                <p>Address: <span>{order["CustomerAddress"]}</span></p>
+                            </div>
+                            <div className="order-remove" onClick={() => removeOrder(order["ArtID"])}>
+                                <XMarkIcon className="hover-raise" />
+                            </div>
+
+                        </div>
+                    )
+                }) }
+            </>
         )
     }
 

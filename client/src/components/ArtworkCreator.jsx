@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import './styles/ArtworkCreator.css';
+import {useState} from "react";
 import * as yup from 'yup';
 import FormInput from "./FormInput.jsx";
 import OrderResponse from "./OrderResponse.jsx";
-import {Buffer} from "buffer";
 
 function ArtworkCreator({ apiPass }) {
 
@@ -81,6 +81,7 @@ function ArtworkCreator({ apiPass }) {
 
         // https://stackoverflow.com/a/57272491/13460028
         const toBase64 = file => new Promise((resolve, reject) => {
+            if (file === null) resolve(null);
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result);
@@ -124,9 +125,9 @@ function ArtworkCreator({ apiPass }) {
         );
     } else {
         return (
-            <form className="flex flex-col gap-4 items-center">
-                <div className="flex flex-row gap-8">
-                    <div className="flex flex-col gap-4 justify-center">
+            <form>
+                <div className="form-content">
+                    <div className="form-inputs">
                         <FormInput name="Name" type="text" placeholder="Artwork Name" onChange={(e) => setArtworkName(e.target.value)} />
                         <FormInput name="CompletionDate" type="date" placeholder="Completion Date" onChange={(e) => setArtworkCompletionDate(e.target.value)} />
                         <FormInput name="Width" type="number" placeholder="Width (mm)" onChange={(e) => setArtworkWidth(e.target.value)} />
@@ -134,19 +135,19 @@ function ArtworkCreator({ apiPass }) {
                         <FormInput name="Price" type="number" step=".01" placeholder="Price" onChange={(e) => setArtworkPrice(e.target.value)} />
                         <FormInput name="Description" type="text" placeholder="Description" onChange={(e) => setArtworkDescription(e.target.value)} />
                     </div>
-                    <div className="flex flex-col gap-4 items-center">
-                        <div className="w-72 h-72 bg-cara-whiter border-2 border-cara-violet">
+                    <div className="form-image-input">
+                        <div className="preview">
                             {
                                 previewSrc === ""
                                     ? ""
-                                    : <img src={previewSrc} alt="Preview" className="object-contain w-full h-full" />
+                                    : <img src={previewSrc} alt="Preview" />
                             }
                         </div>
                         <FormInput name="Image" type="file" placeholder="Image" onChange={onImageChange} /> {/* TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers */}
                     </div>
                 </div>
-                <p><button type="button" onClick={attemptAddArtwork} className="w-64">Add</button></p>
-                { formError !== "" ? <p className="text-center font-bold text-cara-failure">{formError}</p> : "" }
+                <button type="button" onClick={attemptAddArtwork}>Add</button>
+                { formError !== "" ? <p className="failure">{formError}</p> : "" }
             </form>
         )
     }

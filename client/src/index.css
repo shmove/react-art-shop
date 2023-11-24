@@ -19,31 +19,36 @@ svg {
 }
 
 h1 {
-    @apply text-5xl text-cara-magenta font-light;
+    @apply text-3xl text-cara-magenta font-light;
 }
 
 h2 {
-    @apply text-2xl text-cara-magenta font-bold;
+    @apply text-xl text-cara-magenta font-bold;
 }
 
 h3 {
-    @apply text-2xl text-cara-violet font-light;
+    @apply text-xl text-cara-violet font-light;
 }
 
 p {
-    @apply text-cara-violet font-light;
+    @apply text-sm text-cara-violet font-light;
 }
 
 p.success {
-    @apply text-center font-bold text-cara-success text-xl;
+    @apply text-center font-bold text-cara-success text-base mx-4;
 }
 
 p.failure {
-    @apply text-center font-bold text-cara-failure text-xl;
+    @apply text-center font-bold text-cara-failure text-base mx-4;
 }
 
 button, [type="button"] {
-    @apply bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2;
+    @apply bg-cara-violet transition hover:bg-cara-magenta rounded-xl p-1;
+    @apply text-cara-whiter font-bold;
+}
+
+button.toggled {
+    @apply bg-cara-success hover:bg-cara-success-dark;
 }
 
 button.unselectable {
@@ -51,23 +56,6 @@ button.unselectable {
 }
 
 footer {
-    @apply mt-auto text-center py-8;
-}
-
-/** Table **/
-
-table {
-    @apply table-auto border-collapse border border-cara-magenta;
-}
-
-th {
-    @apply bg-cara-magenta text-white font-bold px-4 py-2;
-}
-
-td {
-    @apply border border-cara-magenta px-4 py-2;
-}
-
-td a {
-    @apply text-cara-magenta underline hover:text-cara-violet;
+    @apply mt-auto mx-2 py-4;
+    @apply text-center;
 }

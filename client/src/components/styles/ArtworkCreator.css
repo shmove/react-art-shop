@@ -1,0 +1,31 @@
+form {
+    @apply flex flex-col gap-4 items-center;
+}
+
+.form-content {
+    /* @apply flex flex-row gap-8 */
+    @apply flex flex-col items-center gap-4;
+    @apply flex-col-reverse;
+}
+
+.form-inputs {
+    /*@apply flex flex-col gap-4 justify-center;*/
+    @apply flex flex-col gap-2;
+}
+
+.form-image-input {
+    /* @apply flex flex-col gap-4 items-center; */
+    @apply flex flex-col items-center gap-1;
+}
+
+.form-image-input .preview {
+    @apply w-72 h-72 bg-cara-whiter border-2 border-cara-violet;
+}
+
+.form-image-input .preview img {
+    @apply object-contain w-full h-full;
+}
+
+button {
+    @apply w-64 h-12;
+}

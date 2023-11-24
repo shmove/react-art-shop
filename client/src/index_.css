@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animations */
+
+.hover-raise {
+    @apply transition duration-150 ease-in-out hover:scale-105;
+}
+
+/* Element Styling */
+
+hr {
+    @apply h-[0.2rem] bg-cara-magenta w-auto mx-4;
+}
+
+svg {
+    @apply fill-cara-magenta;
+}
+
+h1 {
+    @apply text-5xl text-cara-magenta font-light;
+}
+
+h2 {
+    @apply text-2xl text-cara-magenta font-bold;
+}
+
+h3 {
+    @apply text-2xl text-cara-violet font-light;
+}
+
+p {
+    @apply text-cara-violet font-light;
+}
+
+p.success {
+    @apply text-center font-bold text-cara-success text-xl;
+}
+
+p.failure {
+    @apply text-center font-bold text-cara-failure text-xl;
+}
+
+button, [type="button"] {
+    @apply bg-cara-violet text-cara-whiter transition hover:bg-cara-magenta font-bold rounded-xl p-2;
+}
+
+button.unselectable {
+    @apply bg-cara-grey hover:bg-cara-grey;
+}
+
+footer {
+    @apply mt-auto text-center py-8;
+}
+
+/** Table **/
+
+table {
+    @apply table-auto border-collapse border border-cara-magenta;
+}
+
+th {
+    @apply bg-cara-magenta text-white font-bold px-4 py-2;
+}
+
+td {
+    @apply border border-cara-magenta px-4 py-2;
+}
+
+td a {
+    @apply text-cara-magenta underline hover:text-cara-violet;
+}

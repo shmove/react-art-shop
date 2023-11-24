@@ -1,6 +1,9 @@
+import "./styles/Admin.css";
+
 import {useState} from "react";
 import OrderTable from "../components/OrderTable.jsx";
 import ArtworkCreator from "../components/ArtworkCreator.jsx";
+import Lightswitch from "../components/Lightswitch.jsx";
 
 const PASSWORD = "WeKnowTheGame23";
 
@@ -8,6 +11,8 @@ function Admin() {
 
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(null);
+
+    const [panel, setPanel] = useState(1);
 
     function submitLogin() {
         if (password === PASSWORD) {
@@ -21,24 +26,34 @@ function Admin() {
     if (loggedIn) {
 
         return (
-            <div className="flex grow flex-col items-center gap-4">
-                <h2>Create Artwork</h2>
-                <ArtworkCreator apiPass={password} />
-                <hr className="w-1/2 my-6" />
-                <h2>Orders</h2>
-                <OrderTable apiPass={password} />
+            <div className="admin-panel">
+                <Lightswitch left="Artwork" right="Orders" onLeft={() => setPanel(1)} onRight={() => setPanel(2)} />
+                {
+                    panel === 1 &&
+                    <div id="artwork-panel">
+                        <h2>Create Artwork</h2>
+                        <ArtworkCreator apiPass={password} />
+                    </div>
+                }
+                {
+                    panel === 2 &&
+                    <div id="order-panel">
+                        <h2>Orders</h2>
+                        <OrderTable apiPass={password} />
+                    </div>
+                }
             </div>
         )
 
     } else {
         return (
-            <div className="flex flex-col items-center justify-center">
-                <p className="font-bold">Please enter the admin password to access this section.</p>
-                <input placeholder="Password" type="password" className="h-8 my-2" onChange={(e) => setPassword(e.target.value)}/>
+            <div className="admin-login">
+                <p>Please enter the admin password to access this section.</p>
+                <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                 <button onClick={submitLogin}>Submit</button>
                 {
                     loggedIn !== null
-                    ? <p className="text-cara-failure font-bold">Incorrect password.</p>
+                    ? <p className="text-cara-failure">Incorrect password.</p>
                     : ""
                 }
             </div>

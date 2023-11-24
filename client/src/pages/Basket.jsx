@@ -1,3 +1,4 @@
+import './styles/Basket.css';
 import OrderForm from "../components/OrderForm.jsx";
 import {useEffect, useState} from "react";
 import BasketCard from "../components/BasketCard.jsx";
@@ -55,19 +56,19 @@ function Basket() {
     );
 
     if (basket.length === 0) return (
-        <div className="flex w-96 h-32 bg-cara-whiter rounded-xl self-center justify-center items-center">
+        <div id="empty-basket">
             <p><em>Your basket is empty.</em></p>
         </div>
     );
 
     return (
-        <div className="flex flex-row gap-4 my-4 items-start justify-center">
-            <div className="flex flex-col items-center gap-2 min-w-[42rem] max-w-[84rem] mx-4">
+        <div className="basket">
+            <div className="basket-items">
                 { basket.map((item) => { return (
                     <BasketCard artID={item} onRemove={() => removeFromBasket(item) } />
                 ); }) }
             </div>
-            <div className="border-4 rounded-xl border-cara-violet p-4">
+            <div className="basket-order">
                 <OrderForm ArtIDList={basket} onOrder={handleOrderResponse} />
             </div>
 

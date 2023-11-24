@@ -1,3 +1,4 @@
+import './styles/OrderForm.css';
 import { useState } from "react";
 import * as yup from 'yup';
 import FormInput from "./FormInput.jsx";
@@ -62,13 +63,13 @@ export const OrderForm = ({ ArtIDList, onOrder }) => {
 
     return (
         <>
-            <form className="flex flex-col gap-4 self-center items-center">
+            <form>
                 <p><FormInput name="CustomerName" type="text" placeholder="Name" onChange={(e) => setCustomerName(e.target.value)} /></p>
                 <p><FormInput name="CustomerNumber" type="tel" placeholder="Phone Number" onChange={(e) => setCustomerNumber(e.target.value)} /></p>
                 <p><FormInput name="CustomerEmail" type="email" placeholder="Email" onChange={(e) => setCustomerEmail(e.target.value)} /></p>
                 <p><FormInput name="CustomerAddress" type="text" placeholder="Delivery Address" onChange={(e) => setCustomerAddress(e.target.value)} /></p>
-                { formError !== "" ? <p className="my-2 text-center font-bold text-cara-failure">{formError}</p> : "" }
-                <p><button type="button" onClick={attemptOrder} className="w-64">Order</button></p>
+                { formError !== "" ? <p className="failure">{formError}</p> : "" }
+                <p><button type="button" onClick={attemptOrder}>Order</button></p>
             </form>
         </>
     )

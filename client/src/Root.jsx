@@ -16,19 +16,19 @@ function Root() {
             <div className="flex justify-center relative">
                 <div className="absolute top-1/2 translate-y-[-50%] left-4">
                     <Link to="/admin">
-                        <WrenchScrewdriverIcon className="w-16 h-16 hover-raise" />
+                        <WrenchScrewdriverIcon className="w-12 h-12 hover-raise" />
                     </Link>
                 </div>
 
-                <Link to="/"><h1 className="text-5xl text-cara-magenta py-6 font-light font-serif hover-raise">Cara's Paints</h1></Link>
+                <Link to="/"><h1 className="py-6 font-serif hover-raise">Cara's Paints</h1></Link>
 
                 <div className="absolute top-1/2 translate-y-[-50%] right-4">
                     <Link to="/basket">
                         <div className="relative hover-raise">
-                            <ShoppingBagIcon className="w-16 h-16" />
+                            <ShoppingBagIcon className="w-12 h-12" />
                             {
                                 basketItems > 0 &&
-                                <div className="absolute bottom-0 right-0 w-6 h-6 bg-cara-violet rounded-full flex justify-center items-center animate-jump-in animate-duration-200">
+                                <div className="absolute bottom-0 right-0 w-4 h-4 bg-cara-violet rounded-full flex justify-center items-center animate-jump-in animate-duration-200">
                                     <p className="font-bold text-cara-whiter">{basketItems}</p>
                                 </div>
                             }

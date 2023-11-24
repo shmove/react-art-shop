@@ -1,0 +1,24 @@
+.admin-login {
+    @apply flex flex-col items-center justify-center;
+}
+
+.admin-login p {
+    @apply text-center font-bold mx-12;
+}
+
+.admin-login input {
+    @apply h-8 my-2;
+    @apply border-cara-magenta rounded-lg;
+}
+
+.admin-login button {
+    @apply w-24;
+}
+
+.admin-panel {
+    @apply flex grow flex-col items-center gap-4;
+}
+
+#artwork-panel, #order-panel {
+    @apply flex flex-col items-center gap-4;
+}

@@ -1,0 +1,19 @@
+#empty-basket {
+    /*@apply flex w-96 h-32 bg-cara-whiter rounded-xl self-center justify-center items-center;*/
+    @apply flex w-72 h-32 bg-cara-whiter rounded-xl self-center justify-center items-center;
+}
+
+.basket {
+    /* @apply flex flex-row gap-4 my-4 items-start justify-center; */
+    @apply flex flex-col gap-4 justify-center;
+}
+
+.basket-items {
+    /* @apply flex flex-col items-center gap-2 min-w-[42rem] max-w-[84rem] mx-4 */
+    @apply flex flex-col items-center gap-2 mx-4;
+}
+
+.basket-order {
+    /* @apply border-4 rounded-xl border-cara-violet p-4; */
+    @apply border-2 rounded-xl border-cara-violet p-4 mx-4;
+}

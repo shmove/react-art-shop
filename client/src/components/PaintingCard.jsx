@@ -1,4 +1,4 @@
-import './PaintingCard.css'
+import './styles/PaintingCard.css'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getImage} from "../pages/PaintingListings.jsx";

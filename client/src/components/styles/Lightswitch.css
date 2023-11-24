@@ -1,0 +1,24 @@
+.lightswitch {
+    @apply flex flex-row w-48 text-center drop-shadow-md;
+}
+
+.lightswitch div {
+    @apply w-1/2 px-2 py-2;
+}
+
+.lightswitch p {
+    @apply text-base font-normal;
+}
+
+.lightswitch div.flicked {
+    @apply bg-cara-violet text-cara-whiter;
+}
+
+.lightswitch div.flicked p {
+    @apply text-cara-whiter;
+}
+
+.lightswitch div:not(.flicked) {
+    @apply bg-cara-offwhite text-cara-violet cursor-pointer;
+    @apply hover:brightness-95;
+}
