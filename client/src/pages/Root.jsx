@@ -45,7 +45,7 @@ function Root() {
             <Outlet />
 
             <footer>
-                <p>All sample images used are sourced from the National Gallery of Art and licensed to the public domain.</p>
+                <p>All sample images and accompanying descriptions used are sourced from the National Gallery of Art and licensed to the public domain.</p>
             </footer>
         </>
     )
